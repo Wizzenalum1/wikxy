@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="styles/home-style.css">
+<main>
+    <section id = "feed-posts">
+        <%if(locals.user){%>
+            <form action="/post/create-post" method="post">  
+                <textarea placeholder = "type here" name = "content" cols="30" rows = "3"></textarea>
+                <button type="submit">post</button>
+            </form>
+        <% } %>
+        <div id="posts">
+            <%- include('partials/_post') %>
+        </div>
+    </section>
+    <section id = feed-friends>
+        <h2>Friends</h2>
+        <%  let i = 1; for(var u of users){ %> 
+            <p>
+                <a href="/profile/<%=u.id%>"> <%= u.name %></a>
+            </p>
+            <% i++ } %>
+        
+    </section>
+</main>
+<script src="scripts/home-script.js"></script>

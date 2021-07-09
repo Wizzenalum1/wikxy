@@ -1,0 +1,12 @@
+form{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:10px;
+    place-items: center;
+    margin:10%; 
+    input,button{
+        font-size: 2em;
+        padding:10px 20px;
+    }   
+
+}

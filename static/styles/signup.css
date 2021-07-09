@@ -1,0 +1,1 @@
+form{display:grid;grid-template-columns:1fr;gap:10px;place-items:center;margin:10%}form input,form button{font-size:2em;padding:10px 20px}

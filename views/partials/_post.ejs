@@ -1,0 +1,37 @@
+<% let j = 1; for(var post of posts){ %> 
+    <div class="post">
+        <dt><h4>post<%= " "+j %>
+
+        <!-- // there is deletion option -->
+        
+        <% if(locals.user && locals.user.id==post.user.id){%>
+            <a href="/post/destroy/<%= post.id %>">X</a>
+            <%}%>
+            
+        </h4></dt>
+        <dd>
+            <small><% if(post.user){%><%=post.user.name+ "   "+post.user.email+"  "+post.user.createdAt.toDateString() %><%}%></small><br>
+            <b><%=post.content%></b>
+
+            <% if(post.comment){for(var comment of post.comment){ %>
+                
+                <li><%= comment.content %></li>
+                <small> user is <%= comment.user.name %></small>
+
+                <% if(locals.user  && locals.user.id==comment.user.id){%>
+                    <small style="background-color: red;">
+                        <a href="/destroy/<%= comment.id %>">X</a>
+                    </small> 
+                <%} else if(locals.user && locals.user.id==post.user.id){%>
+                    <small style="background-color: blue;">
+                        <a href="/destroy/<%= comment.id %>">X</a>
+                    </small> 
+                <%}%>
+
+            <%}} %>
+            <% if(locals.user){%><dl><form action="/comment-create" method="post">
+            <input type="text" name="content" placeholder="comment" required> <input type="hidden" name="post" value="<%= post._id %>"><button type="submit">comment</button></form></dl>
+                <%}%>
+        </dd>
+    </div>
+    <% j++ } %>

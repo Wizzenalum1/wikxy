@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/styles/signup.css">
+
+<% if(user.id == profile_user.id){%>
+        <form action="/user/update/<%= profile_user.id%>" method="post">
+        <input type="text" name="name" placeholder="your name" value = "<%=profile_user.name%>" required>
+        <input type="text" name="email" placeholder="your email" value = "<%=profile_user.email%>" required>
+        <input type="submit" value="update">
+    </form>
+    <%}else{%>
+        <h1> hi <%= profile_user.name %> </h1>
+        <h2> your id is <%= profile_user.id %></h2>
+        <h2> your email is <%= profile_user.email %></h2>
+        <h2> your passoword is <%= profile_user.passoword %></h2>
+    
+    <%}%>
+
+
+
