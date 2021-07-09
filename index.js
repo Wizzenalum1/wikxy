@@ -15,15 +15,15 @@ const MongoStore = require('connect-mongo');
 
 const app = express();
 const port = 8080;
-// setup the scss for the node express.
-app.use(sassMiddleware({
-    /* Options */
-    src: './static/scss',
-    dest: './static/styles',
-    debug: true,
-    outputStyle: 'compressed',
-    prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
-}));
+// // setup the scss for the node express.
+// app.use(sassMiddleware({
+//     /* Options */
+//     src: './static/scss',
+//     dest: './static/styles',
+//     debug: true,
+//     outputStyle: 'compressed',
+//     prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+// }));
 
 
 // seting the propertis for view engine.

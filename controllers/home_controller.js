@@ -1,34 +1,28 @@
+
 const UserModel = require('../models/user_model');
 const Post = require('../models/post')
 
-module.exports.home = function(req,res){
-   UserModel.find(function(err,users){
-        if(err){
-            console.log("***####***"+"there is an error to exxecceing ",err);
-            return err;
-        }
-        Post.find()
-                .populate('user')
-                    .populate({path:'comment',
-                        populate:{
-                            path:'user'
-                    }
-                })
-                .exec(function(err,post){
-            if(err){
-                console.log("***####***"+"there is an error to exxecceing ",err);
-            }
-            console.log(`total posts are  ** ${post.length}`);
-            let context = {
-                url:req.url,
-                title:"home",
-                posts:post,
-                users:users
-            };
-            // console.log(user);
-            return res.render('home',context);
-        });
-    });
+module.exports.home = async function(req,res){
+    try {
+            let posts = await Post.find({}).populate('user')
+                        .populate({path:'comment',
+                            populate:{
+                                path:'user'
+                        }});
+
+        let users = await UserModel.find({});
+        let context = {
+            url:req.url,
+            title:"home",
+            posts:posts,
+            users:users
+        };
+        // console.log(user);
+        return res.render('home',context);
+    }catch(err){
+        console.log('Error',err);
+        return;
+    }  
 }
 
 module.exports.profile = function(req,res){
