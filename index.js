@@ -6,12 +6,13 @@ const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const passport = require('passport');
 const passportLocal = require('./config/passportLocals');
 
 const MongoStore = require('connect-mongo');
-
+const costumMware = require('./config/midleware');
 
 const app = express();
 const port = 8080;
@@ -73,7 +74,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser)
-
+app.use(flash());
+app.use(costumMware.setFlash);
 app.use(require("./routes"))
 
 // console.log("***************************",app.locals);
@@ -83,3 +85,9 @@ app.use(require("./routes"))
 app.listen(port,function(err){
     console.log(err||"server up and running "+port);
 })
+
+/// TODO
+/* 
+display notifications --- noty
+add delete comments using ajax 
+*/

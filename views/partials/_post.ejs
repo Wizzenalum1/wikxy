@@ -1,16 +1,16 @@
 <% let j = 1; for(var post of posts){ %> 
-    <div class="post">
+    <div id = "post-<%= post.id %>" class="post">
         <dt><h4>post<%= " "+j %>
 
         <!-- // there is deletion option -->
         
         <% if(locals.user && locals.user.id==post.user.id){%>
-            <a href="/post/destroy/<%= post.id %>">X</a>
+            <a class="delete-post-button" href="/post/destroy/<%= post.id %>">X</a>
             <%}%>
             
         </h4></dt>
         <dd>
-            <small><% if(post.user){%><%=post.user.name+ "   "+post.user.email+"  "+post.user.createdAt.toDateString() %><%}%></small><br>
+            <small><% if(post.user){%><%=post.user.name+" "+post.createdAt.toDateString() %><%}%></small><br>
             <b><%=post.content%></b>
 
             <% if(post.comment){for(var comment of post.comment){ %>
