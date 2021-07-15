@@ -41,7 +41,6 @@ module.exports.destroy = function(req,res){
                 if(err){
                     console.log("Error: ",err);
                 }
-                req.flash('success','post is deleted');
                 if(req.xhr){
                     console.log(`post deletion is completed`);
                     return res.status(200).json({
@@ -50,6 +49,7 @@ module.exports.destroy = function(req,res){
                         },message:"post deleted"
                     })
                 }
+                req.flash('success','post is deleted');
                 return res.redirect('back');
             })
             

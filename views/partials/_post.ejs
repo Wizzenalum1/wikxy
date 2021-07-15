@@ -1,6 +1,6 @@
 <% let j = 1; for(var post of posts){ %> 
     <div id = "post-<%= post.id %>" class="post">
-        <dt><h4 class="post-count">post<%= " "+j %>
+        <dt><h4>post <span class="count-post"><%= j %></span>
 
         <!-- // there is deletion option -->
         
@@ -12,25 +12,26 @@
         <dd>
             <small><% if(post.user){%><%=post.user.name+" "+post.createdAt.toDateString() %><%}%></small><br>
             <b><%=post.content%></b>
-
-            <% if(post.comment){for(var comment of post.comment){ %>
-                
-                <li><%= comment.content %></li>
-                <small> user is <%= comment.user.name %></small>
-
-                <% if(locals.user  && locals.user.id==comment.user.id){%>
-                    <small style="background-color: red;">
-                        <a href="/destroy/<%= comment.id %>">X</a>
-                    </small> 
-                <%} else if(locals.user && locals.user.id==post.user.id){%>
-                    <small style="background-color: blue;">
-                        <a href="/destroy/<%= comment.id %>">X</a>
-                    </small> 
-                <%}%>
-
-            <%}} %>
-            <% if(locals.user){%><dl><form action="/comment-create" method="post">
-            <input type="text" name="content" placeholder="comment" required> <input type="hidden" name="post" value="<%= post._id %>"><button type="submit">comment</button></form></dl>
+            <div class = "comments">
+                <% if(post.comment){for(var comment of post.comment){ %>
+                    <div id = "comment-<%= comment.id %>">
+                        <li><%= comment.content %></li>
+                        <small> user is <%= comment.user.name %></small>
+        
+                        <% if(locals.user  && locals.user.id==comment.user.id){%>
+                            <small style="background-color: red;">
+                                <a class = "delete-comment" href="/destroy/<%= comment.id %>">X</a>
+                            </small> 
+                        <%} else if(locals.user && locals.user.id==post.user.id){%>
+                            <small style="background-color: blue;">
+                                <a class = "delete-comment" href="/destroy/<%= comment.id %>">X</a>
+                            </small> 
+                        <%}%>
+                    </div>
+                <%}} %>
+            </div>
+            <% if(locals.user){%><form action="/comment-create" method="post" class = "comment-form">
+            <input type="text" name="content" placeholder="comment" required> <input type="hidden" name="post" value="<%= post._id %>"><button type="submit">comment</button></form>
                 <%}%>
         </dd>
     </div>

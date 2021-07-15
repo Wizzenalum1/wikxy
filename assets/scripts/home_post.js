@@ -13,6 +13,14 @@ let po = "";
                     // console.log(data);
                     po = data.data.post;
                     $('#posts').prepend(newPost);
+                    notySuccess(true,"succcess: post created ")
+
+                    $(`#post-${data.data.post._id}`).on('click',function(event){
+                        deletePost(event);
+                    })
+                    newPostForm[0].reset();
+
+                    rerankPosts();
                     // console.log("from the fucnt",data.data.post,data.data.post.content);
                 },error:function(error){
                     console.log(error.resposntText);
@@ -27,7 +35,7 @@ let po = "";
         // await $('.post-count').html+=1;
         let date = new Date(Date.parse(data.post.createdAt));
         return $(`<div id = "post-${data.post._id}" class="post">
-        <dt><h4>post 1
+        <dt><h4>post <span class="count-post">1</span>
             <a class="delete-post-button" href="/post/destroy/${data.post._id }">X</a>
         </h4></dt>
         <dd>
@@ -53,6 +61,9 @@ let po = "";
                 success:function(data){
                     console.log(data);
                     $(`#post-${data.data.post_id}`).remove();
+                    notySuccess(false,"succcess: post deleted ")
+                    rerankPosts();
+
                 },error: function(error){
                     console.log(error.resposntText);
                 }
@@ -60,10 +71,15 @@ let po = "";
         
     }
     // adding event listner 
-    $('.post a').on('click',function(event){
+    $('.delete-post-button').on('click',function(event){
         deletePost(event);
     })
     
+    function rerankPosts(){
+        $.each($(".count-post"),(index,value)=>{
+            $(value).html(index+1);
+        })
+    }
 
     createPost();
 }

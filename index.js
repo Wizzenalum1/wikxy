@@ -40,7 +40,7 @@ app.set("layout extractStyles", true);
 //relative to the directory from where you launch your node process. 
 //If you run the express app from another directory, it’s safer to 
 //use the absolute path of the directory that you want to serve:
-app.use(express.static(path.join(__dirname,'static')));
+app.use(express.static(path.join(__dirname,'assets')));
 
 // url encoder to encode the data.
 app.use(express.urlencoded({extended:true}));
@@ -69,7 +69,6 @@ app.use(session({
             console.log(err||'connect to the mongo connect');
         }
     ),
-
 }));
 app.use(passport.initialize());
 app.use(passport.session());
