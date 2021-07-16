@@ -6,13 +6,18 @@ const expressLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const flash = require('connect-flash');
 
 const passport = require('passport');
 const passportLocal = require('./config/passportLocals');
 
 const MongoStore = require('connect-mongo');
-const costumMware = require('./config/midleware');
+
+// used for saving the flash info to the res
+const flash = require('connect-flash');
+const costumMware = require('./config/midleware'); // my middleware to save the message.
+
+// settting multer to handle the fiels in the app.
+
 
 const app = express();
 const port = 8080;
