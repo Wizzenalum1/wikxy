@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/styles/signup.css">
-
 <% if(user.id == profile_user.id){%>
-        <form action="/user/update/<%= profile_user.id%>" method="post">
+        <form action="/user/update/<%= profile_user.id%>" method="post" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="your name" value = "<%=profile_user.name%>" required>
         <input type="text" name="email" placeholder="your email" value = "<%=profile_user.email%>" required>
+        <input type="file" name="avatar" placeholder="profile picture">
         <input type="submit" value="update">
     </form>
     <%}else{%>
@@ -13,6 +13,6 @@
         <h2> your passoword is <%= profile_user.passoword %></h2>
     
     <%}%>
-
+    <script src="/scripts/home_profile.js"></script>
 
 

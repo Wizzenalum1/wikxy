@@ -1,23 +1,22 @@
 const flash = require("connect-flash/lib/flash");
 const {Comment,Post,User} = require("../models");
 
-
-
 module.exports.createPost = async function(req,res){
     try {
+        console.log("get to crate post",req.body);
+        let post = await Post.create({content:req.body.content,user:req.user._id});
+        console.log("post is created")
+        let user = await User.findById(post.user);
         if(req.xhr){
             return res.status(200).json({
                 data:{
                     post:post,
                     user:user,
-                    fileName:req.files['post-img'][0].filename
                 },message:"post created"
             })
         }
-        let post = await Post.create({content:req.body.content,user:req.user._id});
-        let user = await User.findById(post.user);
         req.flash('success','post is created');
-        console.log(`creted post is ${post}`);
+        // console.log(`creted post is ${post}`);
         return res.redirect('/');  
     } catch (error) {
         req.flash('falied','post is not created');  

@@ -1,3 +1,10 @@
+$background:center / contain no-repeat linear-gradient(230deg,lightsalmon,crimson);
+$button-hover-shadow-color:0 0 5px rgba(0, 0, 255, 0.664);
+$button-shadow-color:0 0 5px rgba(0, 0, 255, 0.26);
+$button-active-bg-color:rgba(255, 255, 255, 0.301);
+
+
+
 main{
     display: flex;
     flex-direction: row;
@@ -5,37 +12,7 @@ main{
     justify-content: space-evenly;
     #feed-posts{
          width:60%;
-         margin-top:50px;
-         form{
-            display: flex;
-            flex-direction: row;
-            input,textarea{
-                font-size: 1.2em;
-                background-color: rgba(73, 66, 66, 0.384);
-                border:none;
-                padding:5px 10px;
-                border-radius: 10px;
-                color: rgb(255, 255, 255);
-            }
-            textarea{
-                width:60%;
-            }
-            input{
-                
-            }
-            button{
-                font-size: 1.2em;
-                border-radius: 10px;
-                border: none;
-                &:hover{
-                    background-color: rgb(255, 255, 255);
-                }
-            }
-
-
-         }
-         
- 
+         margin-top:50px;  
      }
      #feed-friends{
          width:30%;
@@ -43,13 +20,174 @@ main{
 
 } 
 #posts{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns:1fr;
+    gap:20px;
+}
+// its about post form 
+#new-post-form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    .post{
-        margin:10px;
-        background-color: palevioletred;
-        border-radius: 20px;
-        padding:10px;
+    textarea,div{
+        font-size: 1.2em;
+        border:none;
+        outline:none;
+        padding:5px 10px;
+        border-radius: 10px;
+        color: rgb(255, 255, 255);
     }
+    textarea{
+        background-color: rgba(73, 66, 66, 0.384);
+        width:100%;
+        min-height: 120px;
+        &:focus{
+            transform: scale(1.1);
+            box-shadow:5px 5px 5px rgba(48, 48, 49, 0.664);;
+        }
+    }
+    div{
+        margin: auto;
+        // background-color: rgba(49, 26, 46, 0.384) ;
+        width:100%;
+        display: grid;
+        grid-template-columns:1fr;
+        grid-auto-flow: column;  
+        // justify-items: center;           
+    }
+    button,input{
+        font-size: 1.2em;
+        background-color: transparent;
+        outline: none;
+        border:none;
+
+        box-shadow: $button-shadow-color;
+        &:hover,&:focus{
+            box-shadow: $button-hover-shadow-color;
+        }
+        &:active{
+            background-color: $button-active-bg-color;
+        }
+    }
+    button{
+        padding: 1px 20px;
+        text-transform: uppercase;
+        color:white;
+    }
+ }
+
+//  each post changes with this
+ .post{
+    background-color: palevioletred;
+    border-radius: 20px;
+    padding:10px;
+    box-shadow: 0 5px 5px darkmagenta;
+    .post-header{
+        display: grid;
+        grid-template-columns:1fr;
+        grid-auto-flow: column;
+        justify-items: start;
+        align-items: center;
+        padding: 5px 10px;
+        font-size: 1.5em;
+    }
+    .post-head{
+        display: grid;
+        grid-template-columns: auto auto;
+        gap:10px;
+    }
+    .user-name{
+        font-size: 1.2em;
+        text-transform: capitalize;
+    }
+    .date-time{
+        font-size: .7em;
+        font-family:monospace;
+        position: relative;
+        bottom: 10px;
+    }
+    .post-pic{
+        // background-color: red;
+        overflow: hidden;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: pink;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.507);
+        & img{
+            width:100%;
+            // min-width: 100%;
+            // min-height: 100%;
+            // height: auto;
+            // width:auto;
+            position: relative;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+
+    .delete-post>a{
+        color: rgb(133, 14, 14);
+        font-size: 1em;
+        &:hover,&:focus{
+            color: rgb(218, 6, 6);
+            box-shadow: $button-hover-shadow-color;
+        }
+    }
+
+}
+.post-main{
+    width: 90%;
+    margin: auto;
+    font-size: 1.1em;
+    color: rgb(58, 15, 51);
+    // font-weight: 300;
+    text-shadow: 0 0 0.5px rgba(236, 179, 198, 0.356);
+    .post-content{
+    border-bottom: 2px solid rgb(235, 151, 235) ;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    }
+    .comments{
+        width:90%;
+        margin: auto;
+        &>div{
+            // background-color: red;
+            display: grid;
+            grid-template-columns:1fr;
+            grid-auto-flow: column;
+            .commentor-name{
+                color: wheat;
+                position: relative;
+                bottom: 5px;
+                text-transform: capitalize;
+            }
+
+        }
+              
+
+    }
+    .comment-form{
+        // background-color: red;
+        margin: auto;
+        input,button{
+            font-size: 1em;
+            padding:2px 10px;
+            outline:none;
+            border: none;
+            background-color: pink;
+        }
+        button{
+            border-radius: 10px;
+            box-shadow: $button-shadow-color;
+            &:hover,&:focus{
+                box-shadow: $button-hover-shadow-color;
+                background-color: rgba(128, 0, 128, 0.548);
+            }
+            &:active{
+                background-color: $button-active-bg-color;
+            }
+        }
+    } 
 }

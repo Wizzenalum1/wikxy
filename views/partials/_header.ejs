@@ -1,6 +1,6 @@
 <!-- here this is used as partail for that only we used underscore before name to defferentiate -->
-<header>
-  <div>
+<header id="main-header">
+  <div id = "logo">
     <% if(locals.url!="/"){%><a href="/">HOME</a>
     <% }else{%>
       <a>WikXy</a>
@@ -10,6 +10,11 @@
     <% if(locals.user){%>
         <a href="/user/signout">SIGNOUT</a>
         <a href="/profile/<%=locals.user.id%>"><%=user.name %></a>
+        <% if(locals.user.avatar){%>
+           <div id = "profile-pic">
+             <img src="<%= locals.user.avatar %>" alt="" srcset="">
+            </div> 
+        <%}%>
     <%} else{%>
             <a href="/user/signin">Signin</a>
             <a href="/user/signup">Signup</a>

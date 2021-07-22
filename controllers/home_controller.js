@@ -3,6 +3,7 @@ const UserModel = require('../models/user_model');
 const Post = require('../models/post')
 
 module.exports.home = async function(req,res){
+    console.log("reach home controller")
     try {
         let posts = await Post.find({}).populate('user')
                     .sort('-createdAt')
@@ -18,7 +19,7 @@ module.exports.home = async function(req,res){
             posts:posts,
             users:users
         };
-        // console.log(user);
+        console.log("sending the data");
         return res.render('home',context);
     }catch(err){
         console.log('Error',err);

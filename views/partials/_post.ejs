@@ -1,38 +1,50 @@
 <% let j = 1; for(var post of posts){ %> 
     <div id = "post-<%= post.id %>" class="post">
-        <dt><h4>post <span class="count-post"><%= j %></span>
-
-        <!-- // there is deletion option -->
-        
-        <% if(locals.user && locals.user.id==post.user.id){%>
-            <a class="delete-post-button" href="/post/destroy/<%= post.id %>">X</a>
-            <%}%>
+        <header class="post-header"> 
+            <div class="post-head">
+                <div class = "post-pic">
+                    <img src="<%= post.user.avatar %>" alt="" srcset="">
+                </div>           
+                <div>
+                    <% if(post.user){%><div class="user-name"><%=post.user.name %></div>
+                        <small class="date-time"><%= post.createdAt.toDateString() %>
+                            <span class="count-post"><%= j %></span>
+                             <!-- // there is deletion option -->
+                            <% if(locals.user && locals.user.id==post.user.id){%>
+                                <span class="delete-post"><a class="delete-post-button" href="/post/destroy/<%= post.id %>">X
+                                </a></span> 
+                            <%}%></small><%}%>
+    
+                </div>
+            </div>
             
-        </h4></dt>
-        <dd>
-            <small><% if(post.user){%><%=post.user.name+" "+post.createdAt.toDateString() %><%}%></small><br>
-            <b><%=post.content%></b>
+            
+        </header>
+        <div class = "post-main">
+            <div class="post-content"><%=post.content%></div>
             <div class = "comments">
+                <!-- for loop to show all the comments -->
                 <% if(post.comment){for(var comment of post.comment){ %>
                     <div id = "comment-<%= comment.id %>">
-                        <li><%= comment.content %></li>
-                        <small> user is <%= comment.user.name %></small>
+                        <div>
+                            <div class="comment-content"><%= comment.content %></div>
+                            <small class="commentor-name"><%= comment.user.name %>
+                                <% if(locals.user  && (locals.user.id==comment.user.id || locals.user.id==post.user.id)){%>
+                                <span class = "delete-post">
+                                    <a  href="/destroy/<%= comment.id %>">X</a>
+                                </span> 
+                            <%}%></small>
+                        </div>
         
-                        <% if(locals.user  && locals.user.id==comment.user.id){%>
-                            <small style="background-color: red;">
-                                <a class = "delete-comment" href="/destroy/<%= comment.id %>">X</a>
-                            </small> 
-                        <%} else if(locals.user && locals.user.id==post.user.id){%>
-                            <small style="background-color: blue;">
-                                <a class = "delete-comment" href="/destroy/<%= comment.id %>">X</a>
-                            </small> 
-                        <%}%>
+                        
                     </div>
                 <%}} %>
             </div>
             <% if(locals.user){%><form action="/comment-create" method="post" class = "comment-form">
-            <input type="text" name="content" placeholder="comment" required> <input type="hidden" name="post" value="<%= post._id %>"><button type="submit">comment</button></form>
-                <%}%>
-        </dd>
+                <input type="text" name="content" placeholder="comment" required> 
+                <input type="hidden" name="post" value="<%= post._id %>">
+                <button type="submit">comment</button></form>
+            <%}%>
+        </div>
     </div>
     <% j++ } %>

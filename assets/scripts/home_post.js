@@ -1,20 +1,21 @@
 let po = "";
 {   
     let createPost = function(){
+        console.log("this is create post function");
         let newPostForm = $('#new-post-form');
         newPostForm.submit(function(e){
             e.preventDefault();
+            console.log("initiated")
             $.ajax({
                 type:'post',
                 url:'/post/create-post',
                 data: newPostForm.serialize(),
                 success:function(data){
+                    console.log("something",data);
                     let newPost = newPostDom(data.data);
-                    // console.log(data);
-                    po = data.data.post;
                     $('#posts').prepend(newPost);
                     notySuccess(true,"succcess: post created ")
-
+                    po = data.data;
                     $(`#post-${data.data.post._id}`).on('click',function(event){
                         deletePost(event);
                     })
@@ -23,7 +24,7 @@ let po = "";
                     rerankPosts();
                     // console.log("from the fucnt",data.data.post,data.data.post.content);
                 },error:function(error){
-                    console.log(error.resposntText);
+                    console.log("error",error.resposntText);
                 }
             })
         });

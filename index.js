@@ -21,15 +21,17 @@ const costumMware = require('./config/midleware'); // my middleware to save the 
 
 const app = express();
 const port = 8080;
-// // setup the scss for the node express.
-// app.use(sassMiddleware({
-//     /* Options */
-//     src: './static/scss',
-//     dest: './static/styles',
-//     debug: true,
-//     outputStyle: 'compressed',
-//     prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
-// }));
+
+
+// setup the scss for the node express.
+app.use(sassMiddleware({
+    /* Options */
+    src: './assets/scss',
+    dest: './assets/styles',
+    debug: true,
+    outputStyle: 'compressed',
+    prefix:  '/styles'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+}));
 
 
 // seting the propertis for view engine.
@@ -46,6 +48,13 @@ app.set("layout extractStyles", true);
 //If you run the express app from another directory, it’s safer to 
 //use the absolute path of the directory that you want to serve:
 app.use(express.static(path.join(__dirname,'assets')));
+app.use('/uploads',express.static(path.join(__dirname,"uploads")));
+
+const fs = require('fs')
+// fs.unlink('/uploads/users/avatars/avatar-1626454735020', function(err){
+//     if(err) console.log("error",err)
+//     console.log('file is delted')
+// })
 
 // url encoder to encode the data.
 app.use(express.urlencoded({extended:true}));
@@ -80,6 +89,8 @@ app.use(passport.session());
 app.use(passport.setAuthenticatedUser)
 app.use(flash());
 app.use(costumMware.setFlash);
+
+
 app.use(require("./routes"))
 
 // console.log("***************************",app.locals);
