@@ -13,6 +13,6 @@ router.post('/create-session',passport.authenticate('local',{
 router.get('/signout', userController.logout);
 
 router.post('/update/:id',passport.checkAuthentication,userController.updateProfile);
-
-
+router.get('/auth/google',passport.authenticate('google',{scope:['profile','email']}))
+router.get('/auth/google/callback',passport.authenticate('google',{failureRedirect:'/user/signin'}),userController.createSession);
 module.exports = router;

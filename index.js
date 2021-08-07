@@ -10,6 +10,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passportLocals');
 const passportJwt = require('./config/passport-jwt-strategy');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
 
 
@@ -23,7 +24,7 @@ const costumMware = require('./config/midleware'); // my middleware to save the 
 
 
 const app = express();
-const port = 8080;
+const port = 8000;
 
 
 // setup the scss for the node express.

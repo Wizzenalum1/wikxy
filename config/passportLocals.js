@@ -27,7 +27,7 @@ passport.use(new localStrategy({
 ));
 
 passport.serializeUser(function(user,done){
-    console.log('serializing the data')
+    // console.log('serializing the data')
     done(null,user.id);
 });
 
@@ -37,13 +37,13 @@ passport.deserializeUser(function(id,done){
             console.log("error during finding the user Errror",err);
             return done(err);
         }
-        console.log("deserialization is done",user.name);
+        // console.log("deserialization is done",user.name);
         return done(null,user);
     })
 });
 passport.checkAuthentication = function(req,res,next){
     if(req.isAuthenticated()){
-        console.log("useer is authenticated")
+        // console.log("useer is authenticated")
         return next();
     }
     console.log("authentication FAILED ");
@@ -56,7 +56,7 @@ passport.setAuthenticatedUser = function(req,res,next){
         return next();
         // console.log(res.locals.user);
     }
-    console.log("setAuthentication is failed because user is not loged in")
+    // console.log("setAuthentication is failed because user is not loged in")
     return next();
 }
 
