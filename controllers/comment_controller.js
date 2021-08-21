@@ -1,5 +1,7 @@
 const {User,Comment,Post} = require('../models');
-
+const commentMailler = require('../mailer/comment_mailer')
+const commentEmailWorker = require('../workers/comment_email_worker')
+const queue = require('../config/kue');
 module.exports.createComment = async function(req,res){
     try {
         console.log("in createin of commente");
@@ -16,9 +18,24 @@ module.exports.createComment = async function(req,res){
             comment:comment.content,
             userName:post.user.name,
             postId:post.id,
-            commentId:comment.id,// rememeber to replace this with comment id.
+            commentId:comment.id,
+            userEmail:post.user.email,
         };
         console.log(req.body.content,data);
+        
+        // adding the comment creation mail is send
+
+        // commentMailler.newComment(data);
+
+        // here reating job mailer
+        let job = queue.create('emails',data).save(function(err){
+            if(err){
+                console.log('error in creating a queue',err);
+                return
+            }
+            console.log(job.id);
+        });
+
         if(req.xhr){
             return res.status(202).json({ 
                 data:data,
