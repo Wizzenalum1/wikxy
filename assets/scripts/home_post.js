@@ -1,4 +1,3 @@
-let po = "";
 {   
     let createPost = function(){
         console.log("this is create post function");

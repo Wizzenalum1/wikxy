@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="/styles/signup.css">
+
+<h1>visit your mail address <%= user.email %> verify your acount</h1>
+<form action="/user/password-verification/<%= token %>" method="post">
+    <input  required type="number" placeholder="enter the one time passoword" name = "otp" ><br>
+    <input  required type="password" placeholder="enter passoword" name = "password" ><br>
+    <input  required type="password" placeholder="verify passoword" name = "verify-password" ><br>
+
+    <button  type="submit">submit</button>
+</form>
+

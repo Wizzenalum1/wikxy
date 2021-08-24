@@ -1,0 +1,20 @@
+GET http://localhost:8000/user/signin HTTP/1.1
+
+###
+POST http://localhost:8000/user/create-session HTTP/1.1
+
+email:a@a
+password:aa
+
+###
+GET http://localhost:8000/user/forget-password HTTP/1.1
+
+email:"a@a"
+###
+
+POST http://localhost:8000/user/create-verification-token HTTP/1.1
+
+
+<request>
+    <email>a@a</email>
+</request>
