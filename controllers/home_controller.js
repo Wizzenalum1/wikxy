@@ -9,15 +9,15 @@ module.exports.home = async function(req,res){
                     .sort('-createdAt')
                     .populate({path:'comment',
                         populate:{
-                            path:'user'
+                            path:'user',
                     }});
-
+        // console.log("***********************************************************");
+        // console.log(posts)
         let users = await UserModel.find({});
         let context = {
-            url:req.url,
             title:"home",
             posts:posts,
-            users:users
+            users:users,
         };
         console.log("sending the data");
         return res.render('home',context);

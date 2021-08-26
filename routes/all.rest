@@ -18,3 +18,9 @@ POST http://localhost:8000/user/create-verification-token HTTP/1.1
 <request>
     <email>a@a</email>
 </request>
+
+###
+GET http://localhost:8000/like/add?id=610938323f2af764385e8a68&parent=61251839ab878e32cce83058&model=Post HTTP/1.1
+
+###
+POST  http://localhost:8000/like/toggle?id=612518d3ab878e32cce83063&type=Comment HTTP/1.1
