@@ -191,3 +191,16 @@ main{
         }
     } 
 }
+.like-btn{
+    font-size: 1em;
+    box-shadow: 0 0 2px 2px rgba(182, 21, 223, 0.493);
+    padding:2px 4px;
+    &:hover{
+        box-shadow: $button-hover-shadow-color;
+    }
+}
+.comments .like-btn{
+    font-size: .8em;
+    color:rgb(54, 52, 52);
+    
+}
