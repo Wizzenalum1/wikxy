@@ -12,8 +12,6 @@ const passportLocal = require('./config/passportLocals');
 const passportJwt = require('./config/passport-jwt-strategy');
 const passportGoogle = require('./config/passport-google-oauth2-strategy');
 
-
-
 const MongoStore = require('connect-mongo');
 
 // used for saving the flash info to the res
@@ -25,6 +23,13 @@ const costumMware = require('./config/midleware'); // my middleware to save the 
 
 const app = express();
 const port = 8000;
+
+// setup the chating settion to use socket.io
+const chatServer = require('http').Server(app);
+const chatSocket = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chat server is listening on port 5000')
+
 
 
 // setup the scss for the node express.
