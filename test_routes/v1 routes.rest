@@ -1,0 +1,88 @@
+#       ********       USER AUTHENTICATION    *******
+
+### create user
+POST http://localhost:8000/v1/user/create-session HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=ghanshyam.sikri@gmail.com
+&password=gg
+### create the tokkens.
+POST http://localhost:8000/v1/user/create-session HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=ghanshyam.sikri@gmail.com
+&password=gg
+
+### destoroy the tokens
+DELETE http://localhost:8000/v1/user/destroy-session HTTP/1.1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDQzMjQ5LCJleHAiOjE2MzQwNDM3NDl9._KhNjyj_yaqSzajoSHTsSBr7vE9W0FfgmO6sQHZF6Yg
+
+
+
+
+#    *******  POSTS  *******
+### to create the post by jwt token
+POST   http://localhost:8000/v1/post/create HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDM2OTUzLCJleHAiOjE2MzQwMzc0NTN9.jxrjmG5SnXloswrukFoaoMjTXOHXssQXyehU5ZIU1OY
+
+content=hello this is ghanshyam you can do it easily
+
+
+### indexes of all the posts. read/?querystring
+GET  http://localhost:8000/v1/post/read/?page=1&limit=1 HTTP/1.1
+
+### to update the post by id. update/:id
+PUT   http://localhost:8000/v1/post/update/616557dea6791a56ee801a51 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDMxNDUzLCJleHAiOjE2MzQwMzE5NTN9.V3J2ssGtIl0okkTsobc8BfAriOhvM7rcVI0_TZWLFVg
+
+content=updated content
+
+### to delete the post id.  delete/:id
+DELETE  http://localhost:8000/v1/post/delete/616557dea6791a56ee801a51 HTTP/1.1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDMyNTkyLCJleHAiOjE2MzQwMzMwOTJ9.eat8m42frSvbXUlOBgrbT9BqJTCvxdyzOkZACKFCLF0
+
+
+
+
+
+#    *******  COMMENTS  *******
+### to create the comment by jwt token
+POST   http://localhost:8000/v1/comment/create HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDM2OTUzLCJleHAiOjE2MzQwMzc0NTN9.jxrjmG5SnXloswrukFoaoMjTXOHXssQXyehU5ZIU1OY
+
+content=comment can do it easily
+&postId=61656cf4a518bd6802546b63
+
+### to update the comment by id. update/:id
+PUT   http://localhost:8000/v1/comment/update/61656da7c7872d69ad088a4a HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDM2OTUzLCJleHAiOjE2MzQwMzc0NTN9.jxrjmG5SnXloswrukFoaoMjTXOHXssQXyehU5ZIU1OY
+
+content=updated comment
+&postId=61656cf4a518bd6802546b63
+
+### to delete the comment id.  delete/:id
+DELETE  http://localhost:8000/v1/comment/delete/61656da7c7872d69ad088a4a HTTP/1.1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDM2OTUzLCJleHAiOjE2MzQwMzc0NTN9.jxrjmG5SnXloswrukFoaoMjTXOHXssQXyehU5ZIU1OY
+
+
+
+
+
+
+
+
+#    *******       LIKES         *******
+### it will toggle the like for a likable and the type for logged in user.
+POST   http://localhost:8000/v1/like/toggle HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDQxNjY0LCJleHAiOjE2MzQwNDIxNjR9.u4zfTocuVRjGkF2rizpzfep4bcbDJ_BM7Gv6aytAsDM
+
+id=61656cf4a518bd6802546b63
+&type=Post
