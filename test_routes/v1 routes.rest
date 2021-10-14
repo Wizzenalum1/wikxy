@@ -1,20 +1,60 @@
 #       ********       USER AUTHENTICATION    *******
 
 ### create user
+POST http://localhost:8000/v1/user/create HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=gha
+&email=gha.sikri@gmail.com
+&password=gg
+&confirmPassword=gg
+
+### create the JWT tokens.
 POST http://localhost:8000/v1/user/create-session HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-email=ghanshyam.sikri@gmail.com
-&password=gg
-### create the tokkens.
-POST http://localhost:8000/v1/user/create-session HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-email=ghanshyam.sikri@gmail.com
+email=ghan.sikri@gmail.com
 &password=gg
 
-### destoroy the tokens
+### destoroy the JWT tokens
 DELETE http://localhost:8000/v1/user/destroy-session HTTP/1.1
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmllbmRzIjpbXSwicmVxdWVzdHMiOltdLCJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ3NzIiwiYXZhdGFyIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2pSQjFBYU9GTHF3eTFOS05YdzhCVV9JdVg2dzVKeXY0b0FJeUZBenc9czk2LWMiLCJjcmVhdGVkQXQiOiIyMDIxLTEwLTA2VDEwOjQyOjAwLjQ4MFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTEwLTE0VDA2OjIwOjM0LjIyMFoiLCJfX3YiOjEsImlhdCI6MTYzNDE5MjQ3MCwiZXhwIjoxNjM0MTkyOTcwfQ.nkmnpbvlDAVXI6cQmj5ymMjGnoIg_6wug6X80zk0uQg
+
+### update Password  password/:otp
+PUT http://localhost:8000/v1/user/update/password/6167cb9bede9323c8fc0d3b2 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+otp=3983432
+&password=gss
+&confirmPassword=gss
+
+
+
+### update user profile update/:id
+PUT http://localhost:8000/v1/user/update/6166846c7b2ea94aa84c6f21
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmllbmRzIjpbXSwicmVxdWVzdHMiOltdLCJfaWQiOiI2MTY2ODQ2YzdiMmVhOTRhYTg0YzZmMjEiLCJuYW1lIjoiZ2hhbm51IiwiZW1haWwiOiJnaGFuLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJjcmVhdGVkQXQiOiIyMDIxLTEwLTEzVDA3OjAyOjA0LjM4MVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTEwLTE0VDA3OjAzOjA2LjY4OVoiLCJfX3YiOjAsImF2YXRhciI6Ii91cGxvYWRzL3VzZXJzL2F2YXRhcnMvYXZhdGFyLTE2MzQxOTQ5Njk3MjMiLCJpYXQiOjE2MzQxOTUxMDgsImV4cCI6MTYzNDE5NTYwOH0.tR_Hk-XfxU2Kc9VUMnK3JK128si2Y5EmiHGdab5pL5o
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+Content-Type: text/plain
+
+ghanshyam
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="about"
+Content-Type: text/plain
+
+this is ghanshyam who is quite good personfsfkjalskjlka 
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="pic.png"
+Content-Type: image/png
+
+< ./pic.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+### destroy user
+DELETE http://localhost:8000/v1/user/delete/6166850f83741d4c7c9c10af HTTP/1.1
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3OGU4MWYzMzhjZDY5OWJhNGQiLCJuYW1lIjoiV2l6emVuQWx1bSIsImVtYWlsIjoiZ2hhbnNoeWFtLnNpa3JpQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZ2ciLCJhdmF0YXIiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQU9oMTRHalJCMUFhT0ZMcXd5MU5LTlh3OEJVX0l1WDZ3NUp5djRvQUl5RkF6dz1zOTYtYyIsImNyZWF0ZWRBdCI6IjIwMjEtMTAtMDZUMTA6NDI6MDAuNDgwWiIsInVwZGF0ZWRBdCI6IjIwMjEtMTAtMDZUMTY6MTE6NTQuNjc0WiIsIl9fdiI6MCwiaWF0IjoxNjM0MDQzMjQ5LCJleHAiOjE2MzQwNDM3NDl9._KhNjyj_yaqSzajoSHTsSBr7vE9W0FfgmO6sQHZF6Yg
 
@@ -86,3 +126,11 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTVkN2Q3O
 
 id=61656cf4a518bd6802546b63
 &type=Post
+# **************** OTP     ***********
+
+### create otp 
+POST http://localhost:8000/v1/otp/create HTTP/1.1
+Content-Type:application/x-www-form-urlencoded
+
+email=ghanshyam.sikri@gmail.com
+

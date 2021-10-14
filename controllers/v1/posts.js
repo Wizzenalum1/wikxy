@@ -11,11 +11,13 @@ module.exports.create = async function (req, res) {
         id: post.id,
         content: post.content,
       },
+      success: true,
       message: "post created",
     });
   } catch (error) {
     res.status(500).json({
-      error: "server internal issue",
+      success: false,
+      message: "internal server error",
     });
   }
 };
@@ -41,7 +43,8 @@ module.exports.read = async function (req, res) {
     //   if client ask for page that not exist.
     if (page > posiblePages) {
       return res.status(406).json({
-        error: "page number is not exist",
+        success: false,
+        message: "page number is not exist",
         posiblePages: posiblePages,
         posts: [],
       });
@@ -84,14 +87,16 @@ module.exports.read = async function (req, res) {
       postCount++;
     }
     return res.status(200).json({
-      message: "List of posts",
+      success: true,
+      message: "list of posts",
       posiblePages: posiblePages,
       postCount: postCount,
       posts: filteredPostList,
     });
   } catch (error) {
     res.status(500).json({
-      error: "server internal issue",
+      success: false,
+      message: "internal server issue",
     });
   }
 };
@@ -102,14 +107,16 @@ module.exports.update = async function (req, res) {
     //post creator id and login user are same
     let post = await Post.findById(req.params.id);
     if (!post) {
-      return res.status(400).json({
-        error: "request is wrong",
+      return res.status(422).json({
+        success: false,
+        message: "post is not found",
       });
     }
     if (req.user.id === post.user.toString()) {
       post.content = req.body.content;
       await post.save();
       return res.status(201).json({
+        success: true,
         post: {
           id: post.id,
           content: post.content,
@@ -118,12 +125,14 @@ module.exports.update = async function (req, res) {
       });
     } else {
       return res.status(401).json({
-        error: "you are unautherized",
+        success: false,
+        message: "you are unautherized",
       });
     }
   } catch (error) {
     res.status(500).json({
-      error: "server internal issue",
+      success: false,
+      message: "internal server issue",
     });
   }
 };
@@ -134,8 +143,9 @@ module.exports.destroy = async function (req, res) {
       path: "comment",
     });
     if (!post) {
-      return res.status(400).json({
-        error: "request is wrong",
+      return res.status(422).json({
+        success: false,
+        message: "post is not found",
       });
     }
     if (post.user.toString() === req.user.id) {
@@ -150,16 +160,19 @@ module.exports.destroy = async function (req, res) {
       await Comment.deleteMany({ post: req.params.id });
       post.remove();
       return res.status(200).json({
+        success: true,
         message: "post deleted",
       });
     } else {
       return res.status(401).json({
-        error: "you are unautherized",
+        success: false,
+        message: "you are unautherized",
       });
     }
   } catch (error) {
     return res.status(500).json({
-      error: "server internal issue",
+      success: false,
+      message: "internal server issue",
     });
   }
 };

@@ -1,11 +1,10 @@
-const exp = require("constants");
 const express = require("express");
 const path = require("path");
 const db = require("./config/mongoose");
 const cookieParser = require("cookie-parser");
 
 const passport = require("passport");
-const passportLocal = require("./config/passportLocals");
+// const passportLocal = require("./config/passportLocals");
 const passportJwt = require("./config/passport-jwt-strategy");
 const passportGoogle = require("./config/passport-google-oauth2-strategy");
 

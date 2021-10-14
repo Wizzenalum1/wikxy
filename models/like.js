@@ -7,7 +7,7 @@ const likeSchema = new Schema({
     },
     // this define the obejct id od the liked object
     likeable:{
-        type:Schema.ObjectId,
+        type:Schema.Types.ObjectId,
         required:true,
         refPath:'onModel'
     },
