@@ -29,13 +29,18 @@ module.exports.createUser = async function (req, res) {
     }
     const user = await User.create(req.body);
     if (user) {
+      user = {
+        id: user.id,
+        name: user.name,
+        avatar: user.avatar,
+        about: user.about,
+      };
       return res.status(201).json({
         success: true,
-        user: {
-          name: user.name,
-          id: user.id,
-          avatar: user.avatar,
-        },
+        message:
+          "sign in susccedssfull, here is you token, please keep sequrely",
+        token: jwt.sign(user, "codial", { expiresIn: "5000000" }),
+        user: user,
       });
     } else {
       return res.status(500).json({
@@ -62,15 +67,17 @@ module.exports.createSession = async function (req, res) {
         message: "invalid userame or password",
       });
     }
+    user = {
+      id: user.id,
+      name: user.name,
+      avatar: user.avatar,
+      about: user.about,
+    };
     return res.status(200).json({
       success: true,
       message: "sign in susccedssfull, here is you token, please keep sequrely",
-      token: jwt.sign(user.toJSON(), "codial", { expiresIn: "5000000" }),
-      user: {
-        id: user.id,
-        name: user.name,
-        avatar: user.avatar,
-      },
+      token: jwt.sign(user, "codial", { expiresIn: "5000000" }),
+      user: user,
     });
   } catch (err) {
     return res.status(500).json({

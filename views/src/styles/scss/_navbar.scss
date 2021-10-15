@@ -1,0 +1,75 @@
+@use "var";
+.nav {
+  width: 100%;
+  background-color: var.$nav-bg-col;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  place-items: center;
+  gap: 20px;
+  padding: 10px;
+  .left-div img {
+    @include var.coverSquare($size: 75px);
+  }
+  .search-container {
+    // background-color: red;
+    border: 2px solid salmon;
+    border-radius: 5px;
+    & > div:first-child {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      place-items: center;
+    }
+    & input {
+      border: none;
+    }
+    position: relative;
+    svg {
+      width: 25px;
+      height: 25px;
+      // background-color: white;
+    }
+  }
+  .search-results {
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    display: grid;
+    border-radius: 5px;
+    gap: 20px;
+    padding: 20px;
+    li {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 10px;
+      place-items: center;
+      & > span {
+        text-transform: capitalize;
+      }
+    }
+    img {
+      @include var.coverSquare($size: 25px);
+    }
+  }
+  .right-nav {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 20px;
+    img {
+      @include var.coverSquare(50px);
+    }
+    & > div:first-child {
+      display: grid;
+      grid-template-columns: 1fr;
+      place-items: center;
+      // background-color: #663399;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      & > * {
+        margin-right: 10px;
+      }
+    }
+  }
+}

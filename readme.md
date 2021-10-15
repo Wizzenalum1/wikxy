@@ -1,6 +1,7 @@
 # WIKXY the social media application
 
 It is complete application developed by MERN stack. where data layer is handled by mongodb, logic layer is RESTFUL API of Node.js with express framework and User Interface is developed by React library.
+views folder contain whole UI written in React.
 
 ## About API
 
@@ -25,4 +26,3 @@ API devided into three versions
 1. friends and requests,
 2. one to one chatting.
 3. posting photos, videos.
-4.

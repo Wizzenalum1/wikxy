@@ -1,0 +1,12 @@
+$nav-bg-col:rgb(0, 94, 100);
+$col:rgb(59, 57, 57);
+$nav-col:rgb(214, 212, 212);
+
+
+// mixins used all over the place
+@mixin coverSquare($size:50px) {
+    height: $size;
+    width: $size;
+    border-radius: 50%;
+    object-fit: cover;
+}

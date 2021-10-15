@@ -1,0 +1,220 @@
+.nav {
+  width: 100%;
+  background-color: #005e64;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  place-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+.nav .left-div img {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nav .search-container {
+  border: 2px solid salmon;
+  border-radius: 5px;
+  position: relative;
+}
+.nav .search-container > div:first-child {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+}
+.nav .search-container input {
+  border: none;
+}
+.nav .search-container svg {
+  width: 25px;
+  height: 25px;
+}
+.nav .search-results {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  display: grid;
+  border-radius: 5px;
+  gap: 20px;
+  padding: 20px;
+}
+.nav .search-results li {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  place-items: center;
+}
+.nav .search-results li > span {
+  text-transform: capitalize;
+}
+.nav .search-results img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nav .right-nav {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+}
+.nav .right-nav img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.nav .right-nav > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+.nav .right-nav .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.nav .right-nav .nav-links > * {
+  margin-right: 10px;
+}
+
+.posts-list {
+  width: 96%;
+  margin: 2%;
+}
+.posts-list .post-wrapper {
+  box-shadow: 0 0 2px salmon;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.posts-list .post-comment-box > input {
+  width: 80%;
+}
+.posts-list .post-comments-list {
+  margin: 20px 0;
+  display: grid;
+  gap: 10px;
+}
+.posts-list .post-comments-list .post-comment-header {
+  font-size: 0.7em;
+}
+
+.post-header {
+  border-bottom: 1px solid rgba(87, 84, 84, 0.322);
+  margin-bottom: 20px;
+}
+.post-header .post-avatar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+.post-header .post-avatar img {
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.post-header .post-avatar .post-time {
+  font-size: 0.7em;
+  display: block;
+}
+.post-header .post-content {
+  margin: 20px 0;
+}
+.post-header .post-actions {
+  display: flex;
+}
+.post-header .post-actions > div {
+  margin-right: 30px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 10px;
+  font-size: 0.8em;
+  align-items: center;
+}
+.post-header .post-actions > div img {
+  font-size: 1.5em;
+}
+
+html {
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  margin: 0px;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html small,
+html p,
+html ul,
+html li {
+  margin: 0px;
+  padding: 0px;
+}
+html li {
+  list-style-type: none;
+}
+html h1 {
+  font-size: 2em;
+}
+html * {
+  box-sizing: inherit;
+}
+html a {
+  text-decoration: none;
+}
+html body {
+  margin: 0px;
+}
+html input,
+html button,
+html textarea {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: 1px solid #28273d;
+  border-radius: 5px;
+  font-size: 1em;
+}
+html input:focus,
+html button:focus,
+html textarea:focus {
+  border: 1px solid blueviolet;
+}
+html button {
+  background-color: #ffbb00;
+}
+html button:hover {
+  background-color: rgba(255, 187, 0, 0.616);
+}
+html button:active {
+  background-color: #ffbb00;
+}
+html button:active:disabled {
+  cursor: not-allowed;
+}
+
+.signin-up-form {
+  width: 60%;
+  margin: auto;
+  box-shadow: 0 0 5px 2px #5e5b5b;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 30px;
+  gap: 20px;
+  place-items: center;
+}
+
+.alert {
+  padding: 5px;
+  font-size: 0.7em;
+}
+
+.error-dialog {
+  color: #ebe5e5;
+  background-color: #9c0505;
+}
+
+/*# sourceMappingURL=index.css.map */
